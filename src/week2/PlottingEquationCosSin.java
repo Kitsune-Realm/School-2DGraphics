@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.GeneralPath;
 
 import javax.swing.JApplet;
 import javax.swing.JFrame;
@@ -43,17 +44,30 @@ class PlottingEquationCosSin2D extends JPanel
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		g2.translate(100,100);
+		/*
+		double t = 0;		
+		GeneralPath path = new GeneralPath(GeneralPath.WIND_NON_ZERO);
 		
-		int t = 0;
-		int x1 = (int)((20*t)*Math.cos(t));
-		int y1 = (int)((20*t)*Math.sin(t));
-		int x2;
-		int y2;
+		double x1 = (20*t)*Math.cos(t);
+		double y1 = (20*t)*Math.sin(t);
 		
-		for(t = 1; t <= 8; t++) {
-			x2 = (int)((20*t)*Math.cos(t));
-			y2 = (int)((20*t)*Math.sin(t));
-			g2.drawLine(x1, y1, x2, y2);
+		path.moveTo(x1,y1);
+		
+		for(t=1; t<=(8*Math.PI); t++) {
+			path.lineTo((20*t)*Math.cos(t),(20*t)*Math.sin(t));
+		}
+		g2.draw(path);*/
+		double t = 0;
+		int v = 3;
+		double x1 = (v*t)*Math.cos(t);
+		double y1 = (v*t)*Math.sin(t);
+		double x2;
+		double y2;
+		
+		for(t=1; t<=(8*Math.PI); t+=0.01) {			
+			x2 = (v*t)*Math.cos(t);
+			y2 = (v*t)*Math.sin(t);			
+			g2.drawLine((int)x1,(int)y1,(int)x2,(int)y2);
 			x1 = x2;
 			y1 = y2;
 		}

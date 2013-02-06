@@ -35,7 +35,7 @@ class PlottingEquation2D extends JPanel
 {
 	public PlottingEquation2D()
 	{
-		setPreferredSize(new Dimension(1200,1200));
+		setPreferredSize(new Dimension(500,500));
 		setBackground(Color.YELLOW);
 	}
 	

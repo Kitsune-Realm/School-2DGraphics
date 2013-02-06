@@ -1,49 +1,48 @@
+
 package week2;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 
-import javax.swing.JApplet;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.geom.*;
 
-public class PlotSquare extends JApplet{
+public class PlotSquare {
 	
-	public static void main(String[] args)
+	public static void main(String s[])
 	{
-		JFrame frame = new JFrame("Plot Square turn 45 degrees");
+		JFrame frame = new JFrame("Hoofdstuk 2 - Rotated Square");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JApplet applet = new PlotSquare();
-		applet.init();
 		
-		frame.getContentPane().add(applet);
-		frame.pack();
-		frame.setVisible(true);		
-	}
-	
-	public void init()
-	{
 		JPanel panel = new PlotSquare2D();
-		getContentPane().add(panel);		
+		
+		frame.getContentPane().add(panel);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }
 
-class PlotSquare2D extends JPanel
-{
+
+class PlotSquare2D extends JPanel {
+
+
 	public PlotSquare2D()
 	{
-		setPreferredSize(new Dimension(500, 500));
-		setBackground(Color.GREEN);
+		setPreferredSize( new Dimension(200,150));
 	}
-	
+
 	public void paintComponent(Graphics g)
 	{
-		super.paintComponent(g);
+		super.paintComponents(g);
 		Graphics2D g2 = (Graphics2D)g;
-		g2.translate(100,100);
 		
+		g2.setColor(Color.red);
 		
+		Rectangle2D rectangle = new Rectangle2D.Double(-50, -50, 100, 100);
+		AffineTransform tr = new AffineTransform();
+		tr.rotate(Math.PI / 4.0);		
+		Shape shape = tr.createTransformedShape(rectangle);
+		
+		g2.translate(100, 75);
+		g2.draw(shape);		
 	}
 }
